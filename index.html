@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0068)file:///C:/Users/VisualFace/Downloads/worldcup2026_dashboard_13.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FIFA World Cup 2026 — Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
+<link href="./index_files/css2(1)" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -123,6 +123,7 @@ a{color:var(--blue)}
 .match-card:hover{border-color:var(--border-strong)}
 .match-card.colombia{border-left:3px solid var(--accent)}
 .match-card.final-match{border-left:3px solid var(--red);border-color:#a32d2d44}
+.match-card.is-live-card{border-color:#a32d2d44;background:#a32d2d06}
 .gbadge{font-size:10px;padding:2px 5px;border-radius:4px;background:var(--surface2);color:var(--faint);min-width:26px;text-align:center;flex-shrink:0}
 @media(min-width:600px){.gbadge{font-size:11px;padding:2px 7px;min-width:30px}}
 .m-teams{flex:1;min-width:0}
@@ -246,19 +247,35 @@ a{color:var(--blue)}
 <div class="hdr">
   <div>
     <div class="hdr-title" id="hdr-title">⚽ FIFA World Cup 2026</div>
-    <div class="hdr-sub" id="hdr-sub">Jun 11 – Jul 19 &nbsp;·&nbsp; 48 teams · 104 matches &nbsp;·&nbsp; All times in Medellín (COT = ET − 1 hr)</div>
+    <div class="hdr-sub" id="hdr-sub">Jun 11 – Jul 19 · 48 teams · 104 matches · All times in Medellín (COT = ET − 1 hr)</div>
   </div>
   <div class="hdr-right">
     <button class="lang-btn" id="lang-btn" onclick="toggleLang()">🇪🇸 ES</button>
   </div>
 </div>
 
-<div class="ticker" id="ticker">
+<div class="ticker " id="ticker">
   <div class="ticker-top">
-    <div class="ticker-label" id="ticker-label">Loading...</div>
+    <div class="ticker-label" id="ticker-label">Next match</div>
     <div class="ticker-badge waiting" id="ticker-badge"></div>
   </div>
-  <div id="ticker-body" style="margin-top:.4rem"></div>
+  <div id="ticker-body" style="margin-top:.4rem">
+      <div class="ticker-match" style="margin-bottom:.5rem">
+        🇲🇽 Mexico
+        <span style="color:var(--muted);font-weight:400;font-size:13px"> vs </span>
+        South Africa 🇿🇦
+        
+      </div>
+      <div class="ticker-meta" style="margin-bottom:.75rem">📍 Estadio Azteca, Mexico City &nbsp;·&nbsp; 2:00 PM COT COT &nbsp;·&nbsp; Grp A</div>
+      <div class="ticker-bottom" style="border-top:none;padding-top:0;margin-top:0">
+        <div class="ticker-countdown">
+          <div><span class="tc-num" id="tc-d">0</span><span class="tc-lbl">days</span></div>
+          <div><span class="tc-num" id="tc-h">04</span><span class="tc-lbl">hrs</span></div>
+          <div><span class="tc-num" id="tc-m">33</span><span class="tc-lbl">min</span></div>
+          <div><span class="tc-num" id="tc-s">05</span><span class="tc-lbl">sec</span></div>
+        </div>
+      </div>
+      </div>
 </div>
 
 <div class="col-banner">
@@ -281,55 +298,2040 @@ a{color:var(--blue)}
 </div>
 
 <div class="progress-bar-wrap" id="progress-bar-wrap">
-  <div class="progress-label" id="progress-label">World Cup 2026</div>
+  <div class="progress-label" id="progress-label">Day 1 of 39 · 0/104 matches</div>
   <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-  <div class="progress-stats" id="progress-stats"></div>
+  <div class="progress-stats" id="progress-stats"><strong style="color:var(--accent)">🇨🇴 Next Jun 17</strong></div>
 </div>
 
 <nav class="nav">
-  <button class="tab active" id="tab-schedule" onclick="showTab('schedule',this)">Schedule</button>
-  <button class="tab" id="tab-today" onclick="showTab('today',this)">Hoy</button>
-  <button class="tab" id="tab-colombia-path" onclick="showTab('colombia-path',this)">🇨🇴 Camino</button>
-  <button class="tab" id="tab-standings" onclick="showTab('standings',this)">Standings & Results</button>
-  <button class="tab" id="tab-bracket" onclick="showTab('bracket',this)">Bracket</button>
-  <button class="tab" id="tab-stats" onclick="showTab('stats',this)">Top scorers</button>
-  <button class="tab" id="tab-watch" onclick="showTab('watch',this)">Dónde ver</button>
+  <button class="tab active" id="tab-schedule" onclick="showTab(&#39;schedule&#39;,this)">Schedule</button>
+  <button class="tab" id="tab-today" onclick="showTab(&#39;today&#39;,this)">Today</button>
+  <button class="tab" id="tab-colombia-path" onclick="showTab(&#39;colombia-path&#39;,this)">🇨🇴 Road</button>
+  <button class="tab" id="tab-standings" onclick="showTab(&#39;standings&#39;,this)">Standings &amp; Results</button>
+  <button class="tab" id="tab-bracket" onclick="showTab(&#39;bracket&#39;,this)">Bracket</button>
+  <button class="tab" id="tab-stats" onclick="showTab(&#39;stats&#39;,this)">Top scorers</button>
+  <button class="tab" id="tab-watch" onclick="showTab(&#39;watch&#39;,this)">Dónde ver</button>
 </nav>
 
 <!-- SCHEDULE -->
 <div class="section active" id="sec-schedule">
   <div class="filter-row">
-    <button class="filt-btn active" id="filt-group" onclick="filterSched('group',this)">Group stage (72)</button>
-    <button class="filt-btn" id="filt-knockout" onclick="filterSched('knockout',this)">Knockout stage (32)</button>
-    <button class="filt-btn" id="filt-colombia" onclick="filterSched('colombia',this)">🇨🇴 Colombia only</button>
-    <button class="filt-btn" id="filt-today" onclick="filterSched('today',this)">Today</button>
+    <button class="filt-btn active" id="filt-group" onclick="filterSched(&#39;group&#39;,this)">Group stage (72)</button>
+    <button class="filt-btn" id="filt-knockout" onclick="filterSched(&#39;knockout&#39;,this)">Knockout stage (32)</button>
+    <button class="filt-btn" id="filt-colombia" onclick="filterSched(&#39;colombia&#39;,this)">🇨🇴 Colombia only</button>
+    <button class="filt-btn" id="filt-today" onclick="filterSched(&#39;today&#39;,this)">Today</button>
   </div>
-  <div id="match-grid"></div>
+  <div id="match-grid"><div class="day-label">Thursday, June 11</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group A</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇲🇽 Mexico <span class="m-vs">vs</span> South Africa 🇿🇦</div>
+      <div class="m-meta">📍 Estadio Azteca, Mexico City</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group A</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇰🇷 Korea Republic <span class="m-vs">vs</span> Czechia 🇨🇿</div>
+      <div class="m-meta">📍 Estadio Akron, Guadalajara</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">9:00 PM COT</div>
+      <div class="m-et">10:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Friday, June 12</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group B</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇦 Canada <span class="m-vs">vs</span> Bosnia &amp; Herz. 🇧🇦</div>
+      <div class="m-meta">📍 BMO Field, Toronto</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group D</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇺🇸 USA <span class="m-vs">vs</span> Paraguay 🇵🇾</div>
+      <div class="m-meta">📍 SoFi Stadium, Los Angeles</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">8:00 PM COT</div>
+      <div class="m-et">9:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group D</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇦🇺 Australia <span class="m-vs">vs</span> Türkiye 🇹🇷</div>
+      <div class="m-meta">📍 BC Place, Vancouver</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">11:00 PM COT</div>
+      <div class="m-et">12:00 AM ET</div>
+    </div>
+  </div><div class="day-label">Saturday, June 13</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group B</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇶🇦 Qatar <span class="m-vs">vs</span> Switzerland 🇨🇭</div>
+      <div class="m-meta">📍 Levi's Stadium, Santa Clara</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group C</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇧🇷 Brazil <span class="m-vs">vs</span> Morocco 🇲🇦</div>
+      <div class="m-meta">📍 MetLife Stadium, East Rutherford</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">5:00 PM COT</div>
+      <div class="m-et">6:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group C</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇭🇹 Haiti <span class="m-vs">vs</span> Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+      <div class="m-meta">📍 Gillette Stadium, Boston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">8:00 PM COT</div>
+      <div class="m-et">9:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Sunday, June 14</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group E</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇩🇪 Germany <span class="m-vs">vs</span> Curaçao 🇨🇼</div>
+      <div class="m-meta">📍 NRG Stadium, Houston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">12:00 PM COT</div>
+      <div class="m-et">1:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group F</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇳🇱 Netherlands <span class="m-vs">vs</span> Japan 🇯🇵</div>
+      <div class="m-meta">📍 AT&amp;T Stadium, Arlington</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">3:00 PM COT</div>
+      <div class="m-et">4:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group E</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇮 Côte d'Ivoire <span class="m-vs">vs</span> Ecuador 🇪🇨</div>
+      <div class="m-meta">📍 Lincoln Financial Field, Philadelphia</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">6:00 PM COT</div>
+      <div class="m-et">7:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group F</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇸🇪 Sweden <span class="m-vs">vs</span> Tunisia 🇹🇳</div>
+      <div class="m-meta">📍 Estadio BBVA, Monterrey</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">9:00 PM COT</div>
+      <div class="m-et">10:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Monday, June 15</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group H</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇪🇸 Spain <span class="m-vs">vs</span> Cabo Verde 🇨🇻</div>
+      <div class="m-meta">📍 Mercedes-Benz Stadium, Atlanta</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">11:00 AM COT</div>
+      <div class="m-et">12:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group G</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇧🇪 Belgium <span class="m-vs">vs</span> Egypt 🇪🇬</div>
+      <div class="m-meta">📍 Lumen Field, Seattle</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group H</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇸🇦 Saudi Arabia <span class="m-vs">vs</span> Uruguay 🇺🇾</div>
+      <div class="m-meta">📍 Hard Rock Stadium, Miami</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">5:00 PM COT</div>
+      <div class="m-et">6:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group G</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇮🇷 Iran <span class="m-vs">vs</span> New Zealand 🇳🇿</div>
+      <div class="m-meta">📍 SoFi Stadium, Los Angeles</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">8:00 PM COT</div>
+      <div class="m-et">9:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Tuesday, June 16</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group I</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇫🇷 France <span class="m-vs">vs</span> Senegal 🇸🇳</div>
+      <div class="m-meta">📍 MetLife Stadium, East Rutherford</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group I</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇮🇶 Iraq <span class="m-vs">vs</span> Norway 🇳🇴</div>
+      <div class="m-meta">📍 Gillette Stadium, Boston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">5:00 PM COT</div>
+      <div class="m-et">6:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group J</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇦🇷 Argentina <span class="m-vs">vs</span> Algeria 🇩🇿</div>
+      <div class="m-meta">📍 Arrowhead Stadium, Kansas City</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">8:00 PM COT</div>
+      <div class="m-et">9:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group J</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇦🇹 Austria <span class="m-vs">vs</span> Jordan 🇯🇴</div>
+      <div class="m-meta">📍 Levi's Stadium, Santa Clara</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">11:00 PM COT</div>
+      <div class="m-et">12:00 AM ET</div>
+    </div>
+  </div><div class="day-label">Wednesday, June 17</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group K</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇵🇹 Portugal <span class="m-vs">vs</span> DR Congo 🇨🇩</div>
+      <div class="m-meta">📍 NRG Stadium, Houston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">12:00 PM COT</div>
+      <div class="m-et">1:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group L</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England <span class="m-vs">vs</span> Croatia 🇭🇷</div>
+      <div class="m-meta">📍 AT&amp;T Stadium, Arlington</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">3:00 PM COT</div>
+      <div class="m-et">4:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group L</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇬🇭 Ghana <span class="m-vs">vs</span> Panama 🇵🇦</div>
+      <div class="m-meta">📍 BMO Field, Toronto</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">6:00 PM COT</div>
+      <div class="m-et">7:00 PM ET</div>
+    </div>
+  </div><div class="match-card colombia  ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group K</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇺🇿 Uzbekistan <span class="m-vs">vs</span> Colombia 🇨🇴<span class="col-pill">🇨🇴</span></div>
+      <div class="m-meta">📍 Estadio Azteca, Mexico City</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">9:00 PM COT</div>
+      <div class="m-et">10:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Thursday, June 18</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group A</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇿 Czechia <span class="m-vs">vs</span> South Africa 🇿🇦</div>
+      <div class="m-meta">📍 Mercedes-Benz Stadium, Atlanta</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">11:00 AM COT</div>
+      <div class="m-et">12:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group B</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇭 Switzerland <span class="m-vs">vs</span> Bosnia &amp; Herz. 🇧🇦</div>
+      <div class="m-meta">📍 SoFi Stadium, Los Angeles</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group B</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇦 Canada <span class="m-vs">vs</span> Qatar 🇶🇦</div>
+      <div class="m-meta">📍 BC Place, Vancouver</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">5:00 PM COT</div>
+      <div class="m-et">6:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group A</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇲🇽 Mexico <span class="m-vs">vs</span> Korea Republic 🇰🇷</div>
+      <div class="m-meta">📍 Estadio Akron, Guadalajara</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">8:00 PM COT</div>
+      <div class="m-et">9:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Friday, June 19</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group D</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇺🇸 USA <span class="m-vs">vs</span> Australia 🇦🇺</div>
+      <div class="m-meta">📍 Lumen Field, Seattle</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group C</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland <span class="m-vs">vs</span> Morocco 🇲🇦</div>
+      <div class="m-meta">📍 Gillette Stadium, Boston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">5:00 PM COT</div>
+      <div class="m-et">6:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group C</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇧🇷 Brazil <span class="m-vs">vs</span> Haiti 🇭🇹</div>
+      <div class="m-meta">📍 Lincoln Financial Field, Philadelphia</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">7:30 PM COT</div>
+      <div class="m-et">8:30 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group D</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇹🇷 Türkiye <span class="m-vs">vs</span> Paraguay 🇵🇾</div>
+      <div class="m-meta">📍 Levi's Stadium, Santa Clara</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">10:00 PM COT</div>
+      <div class="m-et">11:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Saturday, June 20</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group F</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇳🇱 Netherlands <span class="m-vs">vs</span> Sweden 🇸🇪</div>
+      <div class="m-meta">📍 NRG Stadium, Houston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">12:00 PM COT</div>
+      <div class="m-et">1:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group E</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇩🇪 Germany <span class="m-vs">vs</span> Côte d'Ivoire 🇨🇮</div>
+      <div class="m-meta">📍 BMO Field, Toronto</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">3:00 PM COT</div>
+      <div class="m-et">4:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group E</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇪🇨 Ecuador <span class="m-vs">vs</span> Curaçao 🇨🇼</div>
+      <div class="m-meta">📍 Arrowhead Stadium, Kansas City</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">7:00 PM COT</div>
+      <div class="m-et">8:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group F</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇹🇳 Tunisia <span class="m-vs">vs</span> Japan 🇯🇵</div>
+      <div class="m-meta">📍 Estadio BBVA, Monterrey</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">11:00 PM COT</div>
+      <div class="m-et">12:00 AM ET</div>
+    </div>
+  </div><div class="day-label">Sunday, June 21</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group H</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇪🇸 Spain <span class="m-vs">vs</span> Saudi Arabia 🇸🇦</div>
+      <div class="m-meta">📍 Mercedes-Benz Stadium, Atlanta</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">11:00 AM COT</div>
+      <div class="m-et">12:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group G</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇧🇪 Belgium <span class="m-vs">vs</span> Iran 🇮🇷</div>
+      <div class="m-meta">📍 SoFi Stadium, Los Angeles</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group H</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇺🇾 Uruguay <span class="m-vs">vs</span> Cabo Verde 🇨🇻</div>
+      <div class="m-meta">📍 Hard Rock Stadium, Miami</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">5:00 PM COT</div>
+      <div class="m-et">6:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group G</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇳🇿 New Zealand <span class="m-vs">vs</span> Egypt 🇪🇬</div>
+      <div class="m-meta">📍 BC Place, Vancouver</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">8:00 PM COT</div>
+      <div class="m-et">9:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Monday, June 22</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group J</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇦🇷 Argentina <span class="m-vs">vs</span> Austria 🇦🇹</div>
+      <div class="m-meta">📍 AT&amp;T Stadium, Arlington</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">12:00 PM COT</div>
+      <div class="m-et">1:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group I</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇫🇷 France <span class="m-vs">vs</span> Iraq 🇮🇶</div>
+      <div class="m-meta">📍 Lincoln Financial Field, Philadelphia</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">4:00 PM COT</div>
+      <div class="m-et">5:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group I</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇳🇴 Norway <span class="m-vs">vs</span> Senegal 🇸🇳</div>
+      <div class="m-meta">📍 MetLife Stadium, East Rutherford</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">7:00 PM COT</div>
+      <div class="m-et">8:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group J</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇯🇴 Jordan <span class="m-vs">vs</span> Algeria 🇩🇿</div>
+      <div class="m-meta">📍 Levi's Stadium, Santa Clara</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">10:00 PM COT</div>
+      <div class="m-et">11:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Tuesday, June 23</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group K</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇵🇹 Portugal <span class="m-vs">vs</span> Uzbekistan 🇺🇿</div>
+      <div class="m-meta">📍 NRG Stadium, Houston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">12:00 PM COT</div>
+      <div class="m-et">1:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group L</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England <span class="m-vs">vs</span> Ghana 🇬🇭</div>
+      <div class="m-meta">📍 Gillette Stadium, Boston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">3:00 PM COT</div>
+      <div class="m-et">4:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group L</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇵🇦 Panama <span class="m-vs">vs</span> Croatia 🇭🇷</div>
+      <div class="m-meta">📍 BMO Field, Toronto</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">6:00 PM COT</div>
+      <div class="m-et">7:00 PM ET</div>
+    </div>
+  </div><div class="match-card colombia  ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group K</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇴 Colombia <span class="m-vs">vs</span> DR Congo 🇨🇩<span class="col-pill">🇨🇴</span></div>
+      <div class="m-meta">📍 Estadio Akron, Guadalajara</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">9:00 PM COT</div>
+      <div class="m-et">10:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Wednesday, June 24</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group B</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇭 Switzerland <span class="m-vs">vs</span> Canada 🇨🇦</div>
+      <div class="m-meta">📍 BC Place, Vancouver</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group B</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇧🇦 Bosnia &amp; Herz. <span class="m-vs">vs</span> Qatar 🇶🇦</div>
+      <div class="m-meta">📍 Lumen Field, Seattle</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group C</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland <span class="m-vs">vs</span> Brazil 🇧🇷</div>
+      <div class="m-meta">📍 Hard Rock Stadium, Miami</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">5:00 PM COT</div>
+      <div class="m-et">6:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group C</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇲🇦 Morocco <span class="m-vs">vs</span> Haiti 🇭🇹</div>
+      <div class="m-meta">📍 Mercedes-Benz Stadium, Atlanta</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">5:00 PM COT</div>
+      <div class="m-et">6:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group A</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇿 Czechia <span class="m-vs">vs</span> Mexico 🇲🇽</div>
+      <div class="m-meta">📍 Estadio Azteca, Mexico City</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">8:00 PM COT</div>
+      <div class="m-et">9:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group A</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇿🇦 South Africa <span class="m-vs">vs</span> Korea Republic 🇰🇷</div>
+      <div class="m-meta">📍 Estadio BBVA, Monterrey</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">8:00 PM COT</div>
+      <div class="m-et">9:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Thursday, June 25</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group E</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇼 Curaçao <span class="m-vs">vs</span> Côte d'Ivoire 🇨🇮</div>
+      <div class="m-meta">📍 Lincoln Financial Field, Philadelphia</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">3:00 PM COT</div>
+      <div class="m-et">4:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group E</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇪🇨 Ecuador <span class="m-vs">vs</span> Germany 🇩🇪</div>
+      <div class="m-meta">📍 MetLife Stadium, East Rutherford</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">3:00 PM COT</div>
+      <div class="m-et">4:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group F</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇯🇵 Japan <span class="m-vs">vs</span> Sweden 🇸🇪</div>
+      <div class="m-meta">📍 AT&amp;T Stadium, Arlington</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">6:00 PM COT</div>
+      <div class="m-et">7:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group F</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇹🇳 Tunisia <span class="m-vs">vs</span> Netherlands 🇳🇱</div>
+      <div class="m-meta">📍 Arrowhead Stadium, Kansas City</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">6:00 PM COT</div>
+      <div class="m-et">7:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group D</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇹🇷 Türkiye <span class="m-vs">vs</span> USA 🇺🇸</div>
+      <div class="m-meta">📍 SoFi Stadium, Los Angeles</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">9:00 PM COT</div>
+      <div class="m-et">10:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group D</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇵🇾 Paraguay <span class="m-vs">vs</span> Australia 🇦🇺</div>
+      <div class="m-meta">📍 Levi's Stadium, Santa Clara</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">9:00 PM COT</div>
+      <div class="m-et">10:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Friday, June 26</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group I</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇳🇴 Norway <span class="m-vs">vs</span> France 🇫🇷</div>
+      <div class="m-meta">📍 Gillette Stadium, Boston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group I</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇸🇳 Senegal <span class="m-vs">vs</span> Iraq 🇮🇶</div>
+      <div class="m-meta">📍 BMO Field, Toronto</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">2:00 PM COT</div>
+      <div class="m-et">3:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group H</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇻 Cabo Verde <span class="m-vs">vs</span> Saudi Arabia 🇸🇦</div>
+      <div class="m-meta">📍 NRG Stadium, Houston</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">7:00 PM COT</div>
+      <div class="m-et">8:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group H</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇺🇾 Uruguay <span class="m-vs">vs</span> Spain 🇪🇸</div>
+      <div class="m-meta">📍 Estadio Akron, Guadalajara</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">7:00 PM COT</div>
+      <div class="m-et">8:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group G</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇪🇬 Egypt <span class="m-vs">vs</span> Iran 🇮🇷</div>
+      <div class="m-meta">📍 Lumen Field, Seattle</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">10:00 PM COT</div>
+      <div class="m-et">11:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group G</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇳🇿 New Zealand <span class="m-vs">vs</span> Belgium 🇧🇪</div>
+      <div class="m-meta">📍 BC Place, Vancouver</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">10:00 PM COT</div>
+      <div class="m-et">11:00 PM ET</div>
+    </div>
+  </div><div class="day-label">Saturday, June 27</div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group L</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇵🇦 Panama <span class="m-vs">vs</span> England 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+      <div class="m-meta">📍 MetLife Stadium, East Rutherford</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">4:00 PM COT</div>
+      <div class="m-et">5:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group L</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇭🇷 Croatia <span class="m-vs">vs</span> Ghana 🇬🇭</div>
+      <div class="m-meta">📍 Lincoln Financial Field, Philadelphia</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">4:00 PM COT</div>
+      <div class="m-et">5:00 PM ET</div>
+    </div>
+  </div><div class="match-card colombia  ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group K</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇴 Colombia <span class="m-vs">vs</span> Portugal 🇵🇹<span class="col-pill">🇨🇴</span></div>
+      <div class="m-meta">📍 Hard Rock Stadium, Miami</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">6:30 PM COT</div>
+      <div class="m-et">7:30 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group K</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇨🇩 DR Congo <span class="m-vs">vs</span> Uzbekistan 🇺🇿</div>
+      <div class="m-meta">📍 Mercedes-Benz Stadium, Atlanta</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">6:30 PM COT</div>
+      <div class="m-et">7:30 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group J</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇯🇴 Jordan <span class="m-vs">vs</span> Argentina 🇦🇷</div>
+      <div class="m-meta">📍 AT&amp;T Stadium, Arlington</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">9:00 PM COT</div>
+      <div class="m-et">10:00 PM ET</div>
+    </div>
+  </div><div class="match-card   ">
+    <span class="gbadge" style="min-width:30px;font-size:11px">Group J</span>
+    <div class="m-teams">
+      <div class="m-vs-row">🇩🇿 Algeria <span class="m-vs">vs</span> Austria 🇦🇹</div>
+      <div class="m-meta">📍 Arrowhead Stadium, Kansas City</div>
+    </div>
+    <div class="m-time">
+      <div class="m-cot">9:00 PM COT</div>
+      <div class="m-et">10:00 PM ET</div>
+    </div>
+  </div></div>
 </div>
 
 <!-- TODAY -->
 <div class="section" id="sec-today">
-  <div id="today-content"></div>
+  <div id="today-content"><div class="today-section-label">⏰ Upcoming</div><div class="today-result ">
+    <div class="today-teams">🇲🇽 Mexico <span style="color:var(--faint);font-weight:400"> vs </span> South Africa 🇿🇦
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">📍 Estadio Azteca, Mexico City &nbsp;·&nbsp; Grp A</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <div class="today-score">2:00 PM COT</div>
+      
+    </div>
+  </div><div class="today-result ">
+    <div class="today-teams">🇰🇷 Korea Republic <span style="color:var(--faint);font-weight:400"> vs </span> Czechia 🇨🇿
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">📍 Estadio Akron, Guadalajara &nbsp;·&nbsp; Grp A</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <div class="today-score">9:00 PM COT</div>
+      
+    </div>
+  </div></div>
 </div>
 
 <!-- COLOMBIA PATH -->
 <div class="section" id="sec-colombia-path">
-  <div id="colombia-path-content"></div>
+  <div id="colombia-path-content"><div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem">
+    <span style="font-size:28px">🇨🇴</span>
+    <div>
+      <div style="font-size:16px;font-weight:600;color:var(--accent)">Colombia — Road to the title</div>
+      <div style="font-size:12px;color:var(--muted)">Group K · Portugal · DR Congo · Uzbekistan</div>
+    </div>
+  </div><div class="path-round" style="margin-bottom:8px">GROUP STAGE</div><div class="path-node tbd">
+      <div class="path-round">Matchday 1 · Wednesday, June 17 · 9:00 PM COT COT</div>
+      <div class="path-match">
+        🇺🇿 Uzbekistan <span style="color:var(--faint);font-size:13px"> vs </span> Colombia 🇨🇴
+        <span class="path-outcome-badge tbd">TBD</span>
+      </div>
+      <div class="path-detail">📍 Estadio Azteca, Mexico City</div>
+    </div><div class="path-connector">↓</div><div class="path-node tbd">
+      <div class="path-round">Matchday 2 · Tuesday, June 23 · 9:00 PM COT COT</div>
+      <div class="path-match">
+        🇨🇴 Colombia <span style="color:var(--faint);font-size:13px"> vs </span> DR Congo 🇨🇩
+        <span class="path-outcome-badge tbd">TBD</span>
+      </div>
+      <div class="path-detail">📍 Estadio Akron, Guadalajara</div>
+    </div><div class="path-connector">↓</div><div class="path-node tbd">
+      <div class="path-round">Matchday 3 · Saturday, June 27 · 6:30 PM COT COT</div>
+      <div class="path-match">
+        🇨🇴 Colombia <span style="color:var(--faint);font-size:13px"> vs </span> Portugal 🇵🇹
+        <span class="path-outcome-badge tbd">TBD</span>
+      </div>
+      <div class="path-detail">📍 Hard Rock Stadium, Miami</div>
+    </div><div class="path-node" style="margin-top:8px">
+    <div class="path-round">GROUP K STANDINGS</div>
+    <table class="path-group-table">
+      <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead>
+      <tbody><tr class="col-row">
+      <td>🇨🇴 Colombia</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td style="font-weight:600">0</td>
+    </tr><tr class="">
+      <td>🇨🇩 DR Congo</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td style="font-weight:600">0</td>
+    </tr><tr class="">
+      <td>🇵🇹 Portugal</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td style="font-weight:600">0</td>
+    </tr><tr class="">
+      <td>🇺🇿 Uzbekistan</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td style="font-weight:600">0</td>
+    </tr></tbody></table><div class="path-if-box" style="margin-top:8px">
+      <strong>No matches played yet.</strong> Colombia opens Jun 17 vs Uzbekistán.
+    </div></div><div class="path-connector" style="margin:10px 0">↓</div><div class="path-node tbd">
+        <div class="path-round">ROUND OF 32 — TBD</div>
+        <div class="path-match">🇨🇴 Colombia <span style="color:var(--faint);font-size:13px"> vs </span> <span class="tbd">TBD</span></div>
+        <div class="path-if-box" style="margin-top:8px">
+          If Colombia finish <strong>1st</strong> in Group K → face Runner-up Grp J in M87 (Hard Rock Stadium, Miami)<br>If Colombia finish <strong>2nd</strong> in Group K → face Winner Grp J in M86 (Estadio Akron, Guadalajara)
+        </div>
+      </div></div>
 </div>
 <div class="section" id="sec-standings">
-  <div id="api-status-bar" style="display:none;margin-bottom:1rem;padding:.6rem 1rem;border-radius:var(--rs);font-size:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap"></div>
+  <div id="api-status-bar" style="margin-bottom: 1rem; padding: 0.6rem 1rem; border-radius: var(--rs); font-size: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; background: var(--green-bg); color: var(--green); border: .5px solid var(--green-border);">✓ Synced 09:26 AM &nbsp;·&nbsp; <span style="color:var(--faint);font-size:11px">next in 5 min</span></div>
   <p id="standings-intro-p" style="font-size:12px;color:var(--muted);margin-bottom:1rem;">Results sync automatically from openfootball (updated ~daily after matches). Manual entry always works as a fallback.</p>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem">
     <button onclick="fetchLiveData()" id="btn-refresh" style="font-size:12px;font-family:inherit;padding:6px 12px;border:.5px solid var(--border-strong);border-radius:var(--rs);background:transparent;color:var(--muted);cursor:pointer;min-height:34px">↻ Refresh now</button>
     <button onclick="clearAllData()" id="btn-clear" style="font-size:12px;font-family:inherit;padding:6px 12px;border:.5px solid var(--border-strong);border-radius:var(--rs);background:transparent;color:var(--muted);cursor:pointer;min-height:34px">🗑 Clear all data</button>
   </div>
-  <div class="sg-grid" id="standings-grid"></div>
+  <div class="sg-grid" id="standings-grid"><div class="sg-card ">
+      <div class="sg-head">Group A </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇨🇿 Czechia</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇰🇷 Korea Republic</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇲🇽 Mexico</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇿🇦 South Africa</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇲🇽 Mexico <span style="color:var(--faint)">vs</span> South Africa 🇿🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_A_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_A_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;A&#39;,&#39;Mexico&#39;,&#39;South Africa&#39;,&#39;r_A_0_h&#39;,&#39;r_A_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇰🇷 Korea Republic <span style="color:var(--faint)">vs</span> Czechia 🇨🇿</span>
+        <div class="result-form">
+          <input class="score-input" id="r_A_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_A_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;A&#39;,&#39;Korea Republic&#39;,&#39;Czechia&#39;,&#39;r_A_1_h&#39;,&#39;r_A_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇿 Czechia <span style="color:var(--faint)">vs</span> South Africa 🇿🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_A_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_A_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;A&#39;,&#39;Czechia&#39;,&#39;South Africa&#39;,&#39;r_A_2_h&#39;,&#39;r_A_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇲🇽 Mexico <span style="color:var(--faint)">vs</span> Korea Republic 🇰🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_A_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_A_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;A&#39;,&#39;Mexico&#39;,&#39;Korea Republic&#39;,&#39;r_A_3_h&#39;,&#39;r_A_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇿 Czechia <span style="color:var(--faint)">vs</span> Mexico 🇲🇽</span>
+        <div class="result-form">
+          <input class="score-input" id="r_A_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_A_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;A&#39;,&#39;Czechia&#39;,&#39;Mexico&#39;,&#39;r_A_4_h&#39;,&#39;r_A_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇿🇦 South Africa <span style="color:var(--faint)">vs</span> Korea Republic 🇰🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_A_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_A_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;A&#39;,&#39;South Africa&#39;,&#39;Korea Republic&#39;,&#39;r_A_5_h&#39;,&#39;r_A_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group B </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇧🇦 Bosnia &amp; Herz.</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇨🇦 Canada</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇶🇦 Qatar</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇨🇭 Switzerland</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇦 Canada <span style="color:var(--faint)">vs</span> Bosnia &amp; Herz. 🇧🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_B_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_B_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;B&#39;,&#39;Canada&#39;,&#39;Bosnia &amp; Herz.&#39;,&#39;r_B_0_h&#39;,&#39;r_B_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇶🇦 Qatar <span style="color:var(--faint)">vs</span> Switzerland 🇨🇭</span>
+        <div class="result-form">
+          <input class="score-input" id="r_B_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_B_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;B&#39;,&#39;Qatar&#39;,&#39;Switzerland&#39;,&#39;r_B_1_h&#39;,&#39;r_B_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇭 Switzerland <span style="color:var(--faint)">vs</span> Bosnia &amp; Herz. 🇧🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_B_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_B_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;B&#39;,&#39;Switzerland&#39;,&#39;Bosnia &amp; Herz.&#39;,&#39;r_B_2_h&#39;,&#39;r_B_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇦 Canada <span style="color:var(--faint)">vs</span> Qatar 🇶🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_B_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_B_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;B&#39;,&#39;Canada&#39;,&#39;Qatar&#39;,&#39;r_B_3_h&#39;,&#39;r_B_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇭 Switzerland <span style="color:var(--faint)">vs</span> Canada 🇨🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_B_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_B_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;B&#39;,&#39;Switzerland&#39;,&#39;Canada&#39;,&#39;r_B_4_h&#39;,&#39;r_B_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇧🇦 Bosnia &amp; Herz. <span style="color:var(--faint)">vs</span> Qatar 🇶🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_B_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_B_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;B&#39;,&#39;Bosnia &amp; Herz.&#39;,&#39;Qatar&#39;,&#39;r_B_5_h&#39;,&#39;r_B_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group C </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇧🇷 Brazil</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇭🇹 Haiti</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇲🇦 Morocco</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇧🇷 Brazil <span style="color:var(--faint)">vs</span> Morocco 🇲🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_C_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_C_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;C&#39;,&#39;Brazil&#39;,&#39;Morocco&#39;,&#39;r_C_0_h&#39;,&#39;r_C_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇭🇹 Haiti <span style="color:var(--faint)">vs</span> Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+        <div class="result-form">
+          <input class="score-input" id="r_C_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_C_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;C&#39;,&#39;Haiti&#39;,&#39;Scotland&#39;,&#39;r_C_1_h&#39;,&#39;r_C_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland <span style="color:var(--faint)">vs</span> Morocco 🇲🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_C_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_C_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;C&#39;,&#39;Scotland&#39;,&#39;Morocco&#39;,&#39;r_C_2_h&#39;,&#39;r_C_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇧🇷 Brazil <span style="color:var(--faint)">vs</span> Haiti 🇭🇹</span>
+        <div class="result-form">
+          <input class="score-input" id="r_C_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_C_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;C&#39;,&#39;Brazil&#39;,&#39;Haiti&#39;,&#39;r_C_3_h&#39;,&#39;r_C_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland <span style="color:var(--faint)">vs</span> Brazil 🇧🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_C_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_C_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;C&#39;,&#39;Scotland&#39;,&#39;Brazil&#39;,&#39;r_C_4_h&#39;,&#39;r_C_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇲🇦 Morocco <span style="color:var(--faint)">vs</span> Haiti 🇭🇹</span>
+        <div class="result-form">
+          <input class="score-input" id="r_C_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_C_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;C&#39;,&#39;Morocco&#39;,&#39;Haiti&#39;,&#39;r_C_5_h&#39;,&#39;r_C_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group D </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇦🇺 Australia</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇵🇾 Paraguay</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇹🇷 Türkiye</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇺🇸 USA</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇺🇸 USA <span style="color:var(--faint)">vs</span> Paraguay 🇵🇾</span>
+        <div class="result-form">
+          <input class="score-input" id="r_D_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_D_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;D&#39;,&#39;USA&#39;,&#39;Paraguay&#39;,&#39;r_D_0_h&#39;,&#39;r_D_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇦🇺 Australia <span style="color:var(--faint)">vs</span> Türkiye 🇹🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_D_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_D_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;D&#39;,&#39;Australia&#39;,&#39;Türkiye&#39;,&#39;r_D_1_h&#39;,&#39;r_D_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇺🇸 USA <span style="color:var(--faint)">vs</span> Australia 🇦🇺</span>
+        <div class="result-form">
+          <input class="score-input" id="r_D_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_D_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;D&#39;,&#39;USA&#39;,&#39;Australia&#39;,&#39;r_D_2_h&#39;,&#39;r_D_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇹🇷 Türkiye <span style="color:var(--faint)">vs</span> Paraguay 🇵🇾</span>
+        <div class="result-form">
+          <input class="score-input" id="r_D_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_D_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;D&#39;,&#39;Türkiye&#39;,&#39;Paraguay&#39;,&#39;r_D_3_h&#39;,&#39;r_D_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇹🇷 Türkiye <span style="color:var(--faint)">vs</span> USA 🇺🇸</span>
+        <div class="result-form">
+          <input class="score-input" id="r_D_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_D_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;D&#39;,&#39;Türkiye&#39;,&#39;USA&#39;,&#39;r_D_4_h&#39;,&#39;r_D_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇵🇾 Paraguay <span style="color:var(--faint)">vs</span> Australia 🇦🇺</span>
+        <div class="result-form">
+          <input class="score-input" id="r_D_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_D_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;D&#39;,&#39;Paraguay&#39;,&#39;Australia&#39;,&#39;r_D_5_h&#39;,&#39;r_D_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group E </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇨🇮 Côte d'Ivoire</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇨🇼 Curaçao</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇪🇨 Ecuador</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇩🇪 Germany</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇩🇪 Germany <span style="color:var(--faint)">vs</span> Curaçao 🇨🇼</span>
+        <div class="result-form">
+          <input class="score-input" id="r_E_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_E_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;E&#39;,&#39;Germany&#39;,&#39;Curaçao&#39;,&#39;r_E_0_h&#39;,&#39;r_E_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇮 Côte d'Ivoire <span style="color:var(--faint)">vs</span> Ecuador 🇪🇨</span>
+        <div class="result-form">
+          <input class="score-input" id="r_E_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_E_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;E&#39;,&#39;Côte d\&#39;Ivoire&#39;,&#39;Ecuador&#39;,&#39;r_E_1_h&#39;,&#39;r_E_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇩🇪 Germany <span style="color:var(--faint)">vs</span> Côte d'Ivoire 🇨🇮</span>
+        <div class="result-form">
+          <input class="score-input" id="r_E_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_E_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;E&#39;,&#39;Germany&#39;,&#39;Côte d\&#39;Ivoire&#39;,&#39;r_E_2_h&#39;,&#39;r_E_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇪🇨 Ecuador <span style="color:var(--faint)">vs</span> Curaçao 🇨🇼</span>
+        <div class="result-form">
+          <input class="score-input" id="r_E_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_E_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;E&#39;,&#39;Ecuador&#39;,&#39;Curaçao&#39;,&#39;r_E_3_h&#39;,&#39;r_E_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇼 Curaçao <span style="color:var(--faint)">vs</span> Côte d'Ivoire 🇨🇮</span>
+        <div class="result-form">
+          <input class="score-input" id="r_E_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_E_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;E&#39;,&#39;Curaçao&#39;,&#39;Côte d\&#39;Ivoire&#39;,&#39;r_E_4_h&#39;,&#39;r_E_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇪🇨 Ecuador <span style="color:var(--faint)">vs</span> Germany 🇩🇪</span>
+        <div class="result-form">
+          <input class="score-input" id="r_E_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_E_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;E&#39;,&#39;Ecuador&#39;,&#39;Germany&#39;,&#39;r_E_5_h&#39;,&#39;r_E_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group F </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇯🇵 Japan</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇳🇱 Netherlands</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇸🇪 Sweden</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇹🇳 Tunisia</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇳🇱 Netherlands <span style="color:var(--faint)">vs</span> Japan 🇯🇵</span>
+        <div class="result-form">
+          <input class="score-input" id="r_F_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_F_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;F&#39;,&#39;Netherlands&#39;,&#39;Japan&#39;,&#39;r_F_0_h&#39;,&#39;r_F_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇸🇪 Sweden <span style="color:var(--faint)">vs</span> Tunisia 🇹🇳</span>
+        <div class="result-form">
+          <input class="score-input" id="r_F_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_F_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;F&#39;,&#39;Sweden&#39;,&#39;Tunisia&#39;,&#39;r_F_1_h&#39;,&#39;r_F_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇳🇱 Netherlands <span style="color:var(--faint)">vs</span> Sweden 🇸🇪</span>
+        <div class="result-form">
+          <input class="score-input" id="r_F_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_F_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;F&#39;,&#39;Netherlands&#39;,&#39;Sweden&#39;,&#39;r_F_2_h&#39;,&#39;r_F_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇹🇳 Tunisia <span style="color:var(--faint)">vs</span> Japan 🇯🇵</span>
+        <div class="result-form">
+          <input class="score-input" id="r_F_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_F_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;F&#39;,&#39;Tunisia&#39;,&#39;Japan&#39;,&#39;r_F_3_h&#39;,&#39;r_F_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇯🇵 Japan <span style="color:var(--faint)">vs</span> Sweden 🇸🇪</span>
+        <div class="result-form">
+          <input class="score-input" id="r_F_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_F_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;F&#39;,&#39;Japan&#39;,&#39;Sweden&#39;,&#39;r_F_4_h&#39;,&#39;r_F_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇹🇳 Tunisia <span style="color:var(--faint)">vs</span> Netherlands 🇳🇱</span>
+        <div class="result-form">
+          <input class="score-input" id="r_F_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_F_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;F&#39;,&#39;Tunisia&#39;,&#39;Netherlands&#39;,&#39;r_F_5_h&#39;,&#39;r_F_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group G </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇧🇪 Belgium</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇪🇬 Egypt</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇮🇷 Iran</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇳🇿 New Zealand</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇧🇪 Belgium <span style="color:var(--faint)">vs</span> Egypt 🇪🇬</span>
+        <div class="result-form">
+          <input class="score-input" id="r_G_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_G_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;G&#39;,&#39;Belgium&#39;,&#39;Egypt&#39;,&#39;r_G_0_h&#39;,&#39;r_G_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇮🇷 Iran <span style="color:var(--faint)">vs</span> New Zealand 🇳🇿</span>
+        <div class="result-form">
+          <input class="score-input" id="r_G_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_G_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;G&#39;,&#39;Iran&#39;,&#39;New Zealand&#39;,&#39;r_G_1_h&#39;,&#39;r_G_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇧🇪 Belgium <span style="color:var(--faint)">vs</span> Iran 🇮🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_G_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_G_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;G&#39;,&#39;Belgium&#39;,&#39;Iran&#39;,&#39;r_G_2_h&#39;,&#39;r_G_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇳🇿 New Zealand <span style="color:var(--faint)">vs</span> Egypt 🇪🇬</span>
+        <div class="result-form">
+          <input class="score-input" id="r_G_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_G_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;G&#39;,&#39;New Zealand&#39;,&#39;Egypt&#39;,&#39;r_G_3_h&#39;,&#39;r_G_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇪🇬 Egypt <span style="color:var(--faint)">vs</span> Iran 🇮🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_G_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_G_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;G&#39;,&#39;Egypt&#39;,&#39;Iran&#39;,&#39;r_G_4_h&#39;,&#39;r_G_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇳🇿 New Zealand <span style="color:var(--faint)">vs</span> Belgium 🇧🇪</span>
+        <div class="result-form">
+          <input class="score-input" id="r_G_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_G_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;G&#39;,&#39;New Zealand&#39;,&#39;Belgium&#39;,&#39;r_G_5_h&#39;,&#39;r_G_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group H </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇨🇻 Cabo Verde</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇸🇦 Saudi Arabia</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇪🇸 Spain</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇺🇾 Uruguay</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇪🇸 Spain <span style="color:var(--faint)">vs</span> Cabo Verde 🇨🇻</span>
+        <div class="result-form">
+          <input class="score-input" id="r_H_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_H_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;H&#39;,&#39;Spain&#39;,&#39;Cabo Verde&#39;,&#39;r_H_0_h&#39;,&#39;r_H_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇸🇦 Saudi Arabia <span style="color:var(--faint)">vs</span> Uruguay 🇺🇾</span>
+        <div class="result-form">
+          <input class="score-input" id="r_H_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_H_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;H&#39;,&#39;Saudi Arabia&#39;,&#39;Uruguay&#39;,&#39;r_H_1_h&#39;,&#39;r_H_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇪🇸 Spain <span style="color:var(--faint)">vs</span> Saudi Arabia 🇸🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_H_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_H_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;H&#39;,&#39;Spain&#39;,&#39;Saudi Arabia&#39;,&#39;r_H_2_h&#39;,&#39;r_H_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇺🇾 Uruguay <span style="color:var(--faint)">vs</span> Cabo Verde 🇨🇻</span>
+        <div class="result-form">
+          <input class="score-input" id="r_H_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_H_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;H&#39;,&#39;Uruguay&#39;,&#39;Cabo Verde&#39;,&#39;r_H_3_h&#39;,&#39;r_H_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇻 Cabo Verde <span style="color:var(--faint)">vs</span> Saudi Arabia 🇸🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_H_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_H_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;H&#39;,&#39;Cabo Verde&#39;,&#39;Saudi Arabia&#39;,&#39;r_H_4_h&#39;,&#39;r_H_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇺🇾 Uruguay <span style="color:var(--faint)">vs</span> Spain 🇪🇸</span>
+        <div class="result-form">
+          <input class="score-input" id="r_H_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_H_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;H&#39;,&#39;Uruguay&#39;,&#39;Spain&#39;,&#39;r_H_5_h&#39;,&#39;r_H_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group I </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇫🇷 France</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇮🇶 Iraq</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇳🇴 Norway</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇸🇳 Senegal</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇫🇷 France <span style="color:var(--faint)">vs</span> Senegal 🇸🇳</span>
+        <div class="result-form">
+          <input class="score-input" id="r_I_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_I_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;I&#39;,&#39;France&#39;,&#39;Senegal&#39;,&#39;r_I_0_h&#39;,&#39;r_I_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇮🇶 Iraq <span style="color:var(--faint)">vs</span> Norway 🇳🇴</span>
+        <div class="result-form">
+          <input class="score-input" id="r_I_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_I_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;I&#39;,&#39;Iraq&#39;,&#39;Norway&#39;,&#39;r_I_1_h&#39;,&#39;r_I_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇫🇷 France <span style="color:var(--faint)">vs</span> Iraq 🇮🇶</span>
+        <div class="result-form">
+          <input class="score-input" id="r_I_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_I_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;I&#39;,&#39;France&#39;,&#39;Iraq&#39;,&#39;r_I_2_h&#39;,&#39;r_I_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇳🇴 Norway <span style="color:var(--faint)">vs</span> Senegal 🇸🇳</span>
+        <div class="result-form">
+          <input class="score-input" id="r_I_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_I_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;I&#39;,&#39;Norway&#39;,&#39;Senegal&#39;,&#39;r_I_3_h&#39;,&#39;r_I_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇳🇴 Norway <span style="color:var(--faint)">vs</span> France 🇫🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_I_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_I_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;I&#39;,&#39;Norway&#39;,&#39;France&#39;,&#39;r_I_4_h&#39;,&#39;r_I_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇸🇳 Senegal <span style="color:var(--faint)">vs</span> Iraq 🇮🇶</span>
+        <div class="result-form">
+          <input class="score-input" id="r_I_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_I_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;I&#39;,&#39;Senegal&#39;,&#39;Iraq&#39;,&#39;r_I_5_h&#39;,&#39;r_I_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group J </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇩🇿 Algeria</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇦🇷 Argentina</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇦🇹 Austria</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇯🇴 Jordan</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇦🇷 Argentina <span style="color:var(--faint)">vs</span> Algeria 🇩🇿</span>
+        <div class="result-form">
+          <input class="score-input" id="r_J_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_J_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;J&#39;,&#39;Argentina&#39;,&#39;Algeria&#39;,&#39;r_J_0_h&#39;,&#39;r_J_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇦🇹 Austria <span style="color:var(--faint)">vs</span> Jordan 🇯🇴</span>
+        <div class="result-form">
+          <input class="score-input" id="r_J_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_J_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;J&#39;,&#39;Austria&#39;,&#39;Jordan&#39;,&#39;r_J_1_h&#39;,&#39;r_J_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇦🇷 Argentina <span style="color:var(--faint)">vs</span> Austria 🇦🇹</span>
+        <div class="result-form">
+          <input class="score-input" id="r_J_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_J_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;J&#39;,&#39;Argentina&#39;,&#39;Austria&#39;,&#39;r_J_2_h&#39;,&#39;r_J_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇯🇴 Jordan <span style="color:var(--faint)">vs</span> Algeria 🇩🇿</span>
+        <div class="result-form">
+          <input class="score-input" id="r_J_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_J_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;J&#39;,&#39;Jordan&#39;,&#39;Algeria&#39;,&#39;r_J_3_h&#39;,&#39;r_J_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇯🇴 Jordan <span style="color:var(--faint)">vs</span> Argentina 🇦🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_J_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_J_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;J&#39;,&#39;Jordan&#39;,&#39;Argentina&#39;,&#39;r_J_4_h&#39;,&#39;r_J_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇩🇿 Algeria <span style="color:var(--faint)">vs</span> Austria 🇦🇹</span>
+        <div class="result-form">
+          <input class="score-input" id="r_J_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_J_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;J&#39;,&#39;Algeria&#39;,&#39;Austria&#39;,&#39;r_J_5_h&#39;,&#39;r_J_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card grp-k">
+      <div class="sg-head">Group K 🇨🇴</div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class="hl ">
+        <td>🇨🇴 Colombia</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇨🇩 DR Congo</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇵🇹 Portugal</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇺🇿 Uzbekistan</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇵🇹 Portugal <span style="color:var(--faint)">vs</span> DR Congo 🇨🇩</span>
+        <div class="result-form">
+          <input class="score-input" id="r_K_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_K_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;K&#39;,&#39;Portugal&#39;,&#39;DR Congo&#39;,&#39;r_K_0_h&#39;,&#39;r_K_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇺🇿 Uzbekistan <span style="color:var(--faint)">vs</span> Colombia 🇨🇴</span>
+        <div class="result-form">
+          <input class="score-input" id="r_K_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_K_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;K&#39;,&#39;Uzbekistan&#39;,&#39;Colombia&#39;,&#39;r_K_1_h&#39;,&#39;r_K_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇵🇹 Portugal <span style="color:var(--faint)">vs</span> Uzbekistan 🇺🇿</span>
+        <div class="result-form">
+          <input class="score-input" id="r_K_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_K_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;K&#39;,&#39;Portugal&#39;,&#39;Uzbekistan&#39;,&#39;r_K_2_h&#39;,&#39;r_K_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇴 Colombia <span style="color:var(--faint)">vs</span> DR Congo 🇨🇩</span>
+        <div class="result-form">
+          <input class="score-input" id="r_K_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_K_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;K&#39;,&#39;Colombia&#39;,&#39;DR Congo&#39;,&#39;r_K_3_h&#39;,&#39;r_K_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇴 Colombia <span style="color:var(--faint)">vs</span> Portugal 🇵🇹</span>
+        <div class="result-form">
+          <input class="score-input" id="r_K_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_K_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;K&#39;,&#39;Colombia&#39;,&#39;Portugal&#39;,&#39;r_K_4_h&#39;,&#39;r_K_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇨🇩 DR Congo <span style="color:var(--faint)">vs</span> Uzbekistan 🇺🇿</span>
+        <div class="result-form">
+          <input class="score-input" id="r_K_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_K_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;K&#39;,&#39;DR Congo&#39;,&#39;Uzbekistan&#39;,&#39;r_K_5_h&#39;,&#39;r_K_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div><div class="sg-card ">
+      <div class="sg-head">Group L </div>
+      <table class="sg-table">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>GD</th><th>Pts</th></tr></thead><tbody><tr class=" ">
+        <td>🇭🇷 Croatia</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇬🇭 Ghana</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr><tr class=" ">
+        <td>🇵🇦 Panama</td>
+        <td>0</td><td>0</td><td>0</td>
+        <td>0</td><td style="font-weight:600">0</td>
+      </tr></tbody></table><div style="margin-top:8px;border-top:.5px solid var(--border);padding-top:8px;">
+      <div style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Enter results</div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England <span style="color:var(--faint)">vs</span> Croatia 🇭🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_L_0_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_L_0_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;L&#39;,&#39;England&#39;,&#39;Croatia&#39;,&#39;r_L_0_h&#39;,&#39;r_L_0_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇬🇭 Ghana <span style="color:var(--faint)">vs</span> Panama 🇵🇦</span>
+        <div class="result-form">
+          <input class="score-input" id="r_L_1_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_L_1_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;L&#39;,&#39;Ghana&#39;,&#39;Panama&#39;,&#39;r_L_1_h&#39;,&#39;r_L_1_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England <span style="color:var(--faint)">vs</span> Ghana 🇬🇭</span>
+        <div class="result-form">
+          <input class="score-input" id="r_L_2_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_L_2_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;L&#39;,&#39;England&#39;,&#39;Ghana&#39;,&#39;r_L_2_h&#39;,&#39;r_L_2_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇵🇦 Panama <span style="color:var(--faint)">vs</span> Croatia 🇭🇷</span>
+        <div class="result-form">
+          <input class="score-input" id="r_L_3_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_L_3_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;L&#39;,&#39;Panama&#39;,&#39;Croatia&#39;,&#39;r_L_3_h&#39;,&#39;r_L_3_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇵🇦 Panama <span style="color:var(--faint)">vs</span> England 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+        <div class="result-form">
+          <input class="score-input" id="r_L_4_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_L_4_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;L&#39;,&#39;Panama&#39;,&#39;England&#39;,&#39;r_L_4_h&#39;,&#39;r_L_4_a&#39;)">✓</button>
+        </div>
+      </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;flex-wrap:wrap">
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🇭🇷 Croatia <span style="color:var(--faint)">vs</span> Ghana 🇬🇭</span>
+        <div class="result-form">
+          <input class="score-input" id="r_L_5_h" type="number" min="0" max="20" value="" placeholder="–">
+          <span class="score-sep">–</span>
+          <input class="score-input" id="r_L_5_a" type="number" min="0" max="20" value="" placeholder="–">
+          <button class="apply-btn" onclick="applyResult(&#39;L&#39;,&#39;Croatia&#39;,&#39;Ghana&#39;,&#39;r_L_5_h&#39;,&#39;r_L_5_a&#39;)">✓</button>
+        </div>
+      </div></div></div></div>
 </div>
 
 <!-- BRACKET -->
 <div class="section" id="sec-bracket">
-  <p id="bracket-intro-p" style="font-size:12px;color:var(--muted);margin-bottom:1rem;">Matchups auto-populate as group stage results are entered in the Standings tab. Dates and venues are confirmed by FIFA — all times COT.</p>
-  <div id="bracket-grid"></div>
+  <p id="bracket-intro-p" style="font-size:12px;color:var(--muted);margin-bottom:1rem;">Matchups auto-populate as group stage results are entered. Dates and venues confirmed by FIFA — all times COT.</p>
+  <div id="bracket-grid"><div style="margin-bottom:1.5rem">
+      <div style="font-size:11px;font-weight:600;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:8px">
+        Round of 32 · 16 matches
+        
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px"><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M73</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Runner-up Grp A</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Runner-up Grp B</span>
+          </div>
+          <div class="m-meta">📍 SoFi Stadium, Los Angeles</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Sun, Jun 28</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M74</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp E</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Best 3rd A/B/C/D/F</span>
+          </div>
+          <div class="m-meta">📍 NRG Stadium, Houston</div>
+        </div>
+        <div class="m-time"><div class="m-cot">6:30 PM COT</div><div class="m-et">Sun, Jun 28</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M75</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp F</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Runner-up Grp C</span>
+          </div>
+          <div class="m-meta">📍 Estadio BBVA, Monterrey</div>
+        </div>
+        <div class="m-time"><div class="m-cot">8:00 PM COT</div><div class="m-et">Sun, Jun 28</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M76</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp C</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Runner-up Grp F</span>
+          </div>
+          <div class="m-meta">📍 NRG Stadium, Houston</div>
+        </div>
+        <div class="m-time"><div class="m-cot">12:00 PM COT</div><div class="m-et">Mon, Jun 29</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M77</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp I</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Best 3rd C/D/F/G/H</span>
+          </div>
+          <div class="m-meta">📍 MetLife Stadium, East Rutherford</div>
+        </div>
+        <div class="m-time"><div class="m-cot">4:00 PM COT</div><div class="m-et">Mon, Jun 29</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M78</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Runner-up Grp E</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Runner-up Grp I</span>
+          </div>
+          <div class="m-meta">📍 AT&amp;T Stadium, Arlington</div>
+        </div>
+        <div class="m-time"><div class="m-cot">12:00 PM COT</div><div class="m-et">Tue, Jun 30</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M79</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp A</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Best 3rd C/E/F/H/I</span>
+          </div>
+          <div class="m-meta">📍 Estadio Azteca, Mexico City</div>
+        </div>
+        <div class="m-time"><div class="m-cot">8:00 PM COT</div><div class="m-et">Mon, Jun 29</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M80</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp L</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Best 3rd E/H/I/J/K</span>
+          </div>
+          <div class="m-meta">📍 Mercedes-Benz Stadium, Atlanta</div>
+        </div>
+        <div class="m-time"><div class="m-cot">11:00 AM COT</div><div class="m-et">Tue, Jun 30</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M81</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp D</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Best 3rd B/E/F/I/J</span>
+          </div>
+          <div class="m-meta">📍 BC Place, Vancouver</div>
+        </div>
+        <div class="m-time"><div class="m-cot">4:00 PM COT</div><div class="m-et">Tue, Jun 30</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M82</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp G</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Best 3rd A/E/H/I/J</span>
+          </div>
+          <div class="m-meta">📍 Arrowhead Stadium, Kansas City</div>
+        </div>
+        <div class="m-time"><div class="m-cot">8:00 PM COT</div><div class="m-et">Tue, Jun 30</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M83</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Runner-up Grp K</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Runner-up Grp L</span>
+          </div>
+          <div class="m-meta">📍 Lumen Field, Seattle</div>
+        </div>
+        <div class="m-time"><div class="m-cot">12:00 PM COT</div><div class="m-et">Wed, Jul 1</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M84</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp H</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Runner-up Grp J</span>
+          </div>
+          <div class="m-meta">📍 Lincoln Financial Field, Philadelphia</div>
+        </div>
+        <div class="m-time"><div class="m-cot">4:00 PM COT</div><div class="m-et">Wed, Jul 1</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M85</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp B</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Best 3rd E/F/G/I/J</span>
+          </div>
+          <div class="m-meta">📍 BMO Field, Toronto</div>
+        </div>
+        <div class="m-time"><div class="m-cot">12:00 PM COT</div><div class="m-et">Thu, Jul 2</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M86</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp J</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Runner-up Grp H</span>
+          </div>
+          <div class="m-meta">📍 Estadio Akron, Guadalajara</div>
+        </div>
+        <div class="m-time"><div class="m-cot">4:00 PM COT</div><div class="m-et">Thu, Jul 2</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M87</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Winner Grp K</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Best 3rd D/E/I/J/L</span>
+          </div>
+          <div class="m-meta">📍 Hard Rock Stadium, Miami</div>
+        </div>
+        <div class="m-time"><div class="m-cot">12:00 PM COT</div><div class="m-et">Fri, Jul 3</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#88878022;color:#888780;min-width:44px;font-size:10px">M88</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">Runner-up Grp D</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">Runner-up Grp G</span>
+          </div>
+          <div class="m-meta">📍 Levi's Stadium, Santa Clara</div>
+        </div>
+        <div class="m-time"><div class="m-cot">4:00 PM COT</div><div class="m-et">Fri, Jul 3</div></div>
+      </div></div></div><div style="margin-bottom:1.5rem">
+      <div style="font-size:11px;font-weight:600;color:#185fa5;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:8px">
+        Round of 16 · 8 matches
+        
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px"><div class="match-card ">
+        <span class="gbadge" style="background:#185fa522;color:#185fa5;min-width:44px;font-size:10px">M89</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M74</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M77</span>
+          </div>
+          <div class="m-meta">📍 BC Place, Vancouver</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Sat, Jul 4</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#185fa522;color:#185fa5;min-width:44px;font-size:10px">M90</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M73</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M75</span>
+          </div>
+          <div class="m-meta">📍 Mercedes-Benz Stadium, Atlanta</div>
+        </div>
+        <div class="m-time"><div class="m-cot">6:00 PM COT</div><div class="m-et">Sat, Jul 4</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#185fa522;color:#185fa5;min-width:44px;font-size:10px">M91</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M76</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M78</span>
+          </div>
+          <div class="m-meta">📍 Estadio Azteca, Mexico City</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Sun, Jul 5</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#185fa522;color:#185fa5;min-width:44px;font-size:10px">M92</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M79</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M80</span>
+          </div>
+          <div class="m-meta">📍 MetLife Stadium, East Rutherford</div>
+        </div>
+        <div class="m-time"><div class="m-cot">6:00 PM COT</div><div class="m-et">Sun, Jul 5</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#185fa522;color:#185fa5;min-width:44px;font-size:10px">M93</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M83</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M84</span>
+          </div>
+          <div class="m-meta">📍 Lumen Field, Seattle</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Mon, Jul 6</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#185fa522;color:#185fa5;min-width:44px;font-size:10px">M94</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M81</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M82</span>
+          </div>
+          <div class="m-meta">📍 AT&amp;T Stadium, Arlington</div>
+        </div>
+        <div class="m-time"><div class="m-cot">6:00 PM COT</div><div class="m-et">Mon, Jul 6</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#185fa522;color:#185fa5;min-width:44px;font-size:10px">M95</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M86</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M88</span>
+          </div>
+          <div class="m-meta">📍 NRG Stadium, Houston</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Tue, Jul 7</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#185fa522;color:#185fa5;min-width:44px;font-size:10px">M96</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M85</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M87</span>
+          </div>
+          <div class="m-meta">📍 Lincoln Financial Field, Philadelphia</div>
+        </div>
+        <div class="m-time"><div class="m-cot">6:00 PM COT</div><div class="m-et">Tue, Jul 7</div></div>
+      </div></div></div><div style="margin-bottom:1.5rem">
+      <div style="font-size:11px;font-weight:600;color:#3b6d11;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:8px">
+        Quarterfinal · 4 matches
+        
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px"><div class="match-card ">
+        <span class="gbadge" style="background:#3b6d1122;color:#3b6d11;min-width:44px;font-size:10px">M97</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M89</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M90</span>
+          </div>
+          <div class="m-meta">📍 Gillette Stadium, Boston</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Thu, Jul 9</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#3b6d1122;color:#3b6d11;min-width:44px;font-size:10px">M98</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M93</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M94</span>
+          </div>
+          <div class="m-meta">📍 SoFi Stadium, Los Angeles</div>
+        </div>
+        <div class="m-time"><div class="m-cot">6:00 PM COT</div><div class="m-et">Thu, Jul 9</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#3b6d1122;color:#3b6d11;min-width:44px;font-size:10px">M99</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M91</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M92</span>
+          </div>
+          <div class="m-meta">📍 Hard Rock Stadium, Miami</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Fri, Jul 10</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#3b6d1122;color:#3b6d11;min-width:44px;font-size:10px">M100</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M95</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M96</span>
+          </div>
+          <div class="m-meta">📍 Arrowhead Stadium, Kansas City</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Sat, Jul 11</div></div>
+      </div></div></div><div style="margin-bottom:1.5rem">
+      <div style="font-size:11px;font-weight:600;color:#ba7517;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:8px">
+        Semifinal · 2 matches
+        
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px"><div class="match-card ">
+        <span class="gbadge" style="background:#ba751722;color:#ba7517;min-width:44px;font-size:10px">M101</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M97</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M98</span>
+          </div>
+          <div class="m-meta">📍 AT&amp;T Stadium, Arlington</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Tue, Jul 14</div></div>
+      </div><div class="match-card ">
+        <span class="gbadge" style="background:#ba751722;color:#ba7517;min-width:44px;font-size:10px">M102</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">W M99</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M100</span>
+          </div>
+          <div class="m-meta">📍 Mercedes-Benz Stadium, Atlanta</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Wed, Jul 15</div></div>
+      </div></div></div><div style="margin-bottom:1.5rem">
+      <div style="font-size:11px;font-weight:600;color:#6b6a66;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:8px">
+        3rd Place · 1 match
+        
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px"><div class="match-card ">
+        <span class="gbadge" style="background:#6b6a6622;color:#6b6a66;min-width:44px;font-size:10px">M103</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:13px">
+            <span class="tbd">L M101</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">L M102</span>
+          </div>
+          <div class="m-meta">📍 Hard Rock Stadium, Miami</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Sat, Jul 18</div></div>
+      </div></div></div><div style="margin-bottom:1.5rem">
+      <div style="font-size:11px;font-weight:600;color:#a32d2d;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:8px">
+        Final 🏆 · 1 match
+        
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px"><div class="match-card final-match">
+        <span class="gbadge" style="background:#a32d2d22;color:#a32d2d;min-width:44px;font-size:10px">M104</span>
+        <div class="m-teams">
+          <div class="m-vs-row" style="font-size:14px">
+            <span class="tbd">W M101</span>
+            <span class="m-vs">vs</span>
+            <span class="tbd">W M102</span>
+          </div>
+          <div class="m-meta">📍 MetLife Stadium, East Rutherford</div>
+        </div>
+        <div class="m-time"><div class="m-cot">2:00 PM COT</div><div class="m-et">Sun, Jul 19</div></div>
+      </div></div></div></div>
 </div>
 
   <div id="predictor-list"></div>
@@ -343,10 +2345,10 @@ a{color:var(--blue)}
     <div class="stat-card"><div class="stat-label">Teams</div><div class="stat-val">48</div><div class="stat-sub">First 48-team WC</div></div>
     <div class="stat-card"><div class="stat-label">Colombia group</div><div class="stat-val">K</div><div class="stat-sub">POR · COD · UZB</div></div>
   </div>
-  <p style="font-size:12px;color:var(--muted);margin-bottom:.75rem;">Live scorer table populates from June 11. Check <a href="https://www.fifa.com" target="_blank">FIFA.com</a> or <a href="https://www.espn.com/soccer" target="_blank">ESPN</a> for real-time stats.</p>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:.75rem;">Live scorer table populates from June 11. Check <a href="https://www.fifa.com/" target="_blank">FIFA.com</a> or <a href="https://www.espn.com/soccer" target="_blank">ESPN</a> for real-time stats.</p>
   <table class="scorers-tbl">
     <thead><tr><th>#</th><th>Player</th><th>Team</th><th>Goals</th><th>Assists</th></tr></thead>
-    <tbody id="scorers-body"></tbody>
+    <tbody id="scorers-body"><tr class="col-p"><td style="color:var(--faint)">1</td><td>James Rodríguez</td><td>🇨🇴 Colombia</td><td>—</td><td>—</td></tr><tr class=""><td style="color:var(--faint)">2</td><td>Kylian Mbappé</td><td>🇫🇷 France</td><td>—</td><td>—</td></tr><tr class=""><td style="color:var(--faint)">3</td><td>Erling Haaland</td><td>🇳🇴 Norway</td><td>—</td><td>—</td></tr><tr class=""><td style="color:var(--faint)">4</td><td>Lionel Messi</td><td>🇦🇷 Argentina</td><td>—</td><td>—</td></tr><tr class=""><td style="color:var(--faint)">5</td><td>Cristiano Ronaldo</td><td>🇵🇹 Portugal</td><td>—</td><td>—</td></tr><tr class=""><td style="color:var(--faint)">6</td><td>Harry Kane</td><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</td><td>—</td><td>—</td></tr><tr class=""><td style="color:var(--faint)">7</td><td>Vinicius Jr.</td><td>🇧🇷 Brazil</td><td>—</td><td>—</td></tr><tr class=""><td style="color:var(--faint)">8</td><td>Bukayo Saka</td><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</td><td>—</td><td>—</td></tr><tr class=""><td style="color:var(--faint)">9</td><td>Pedri</td><td>🇪🇸 Spain</td><td>—</td><td>—</td></tr><tr class=""><td style="color:var(--faint)">10</td><td>Florian Wirtz</td><td>🇩🇪 Germany</td><td>—</td><td>—</td></tr></tbody>
   </table>
 </div>
 
@@ -395,7 +2397,7 @@ a{color:var(--blue)}
     </div>
     <div class="ch-pills">
       <a href="https://www.canalrcn.com/envivo" target="_blank" class="ch-pill">canalrcn.com/envivo</a>
-      <a href="https://www.deportesrcn.co" target="_blank" class="ch-pill">Deportes RCN</a>
+      <a href="https://www.deportesrcn.co/" target="_blank" class="ch-pill">Deportes RCN</a>
     </div>
   </div>
   <div class="where-card">
@@ -405,19 +2407,19 @@ a{color:var(--blue)}
     </div>
     <div class="ch-pills">
       <span class="ch-pill">Cable / Satélite</span>
-      <a href="https://www.winsports.co" target="_blank" class="ch-pill">winsports.co</a>
+      <a href="https://www.winsports.co/" target="_blank" class="ch-pill">winsports.co</a>
     </div>
   </div>
 
   <!-- Pay TV / Streaming -->
-  <div style="font-size:11px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.07em;margin:1rem 0 8px">💳 TV paga & streaming</div>
+  <div style="font-size:11px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.07em;margin:1rem 0 8px">💳 TV paga &amp; streaming</div>
   <div class="where-card" style="border-left:3px solid var(--accent)">
     <div>
       <div class="where-name">📡 DSports / DGO <span style="font-size:11px;background:var(--accent-bg);color:var(--accent);padding:1px 7px;border-radius:4px;margin-left:6px">104 partidos</span></div>
       <div class="where-meta">DirecTV Colombia · Única opción con los 104 partidos completos · Streaming via DGO</div>
     </div>
     <div class="ch-pills">
-      <a href="https://www.dgo.com.co" target="_blank" class="ch-pill">dgo.com.co</a>
+      <a href="https://www.dgo.com.co/" target="_blank" class="ch-pill">dgo.com.co</a>
       <span class="ch-pill">DirecTV cable</span>
     </div>
   </div>
@@ -427,7 +2429,7 @@ a{color:var(--blue)}
       <div class="where-meta">30 partidos · Incluye los de Colombia</div>
     </div>
     <div class="ch-pills">
-      <a href="https://www.disneyplus.com" target="_blank" class="ch-pill">disneyplus.com</a>
+      <a href="https://www.disneyplus.com/" target="_blank" class="ch-pill">disneyplus.com</a>
     </div>
   </div>
   <div class="where-card">
@@ -451,11 +2453,11 @@ a{color:var(--blue)}
     <span style="color:var(--muted);font-size:12px">📺 Caracol · RCN · DSports · Disney+ &nbsp;▶️ <a href="https://www.youtube.com/@CanalRCN" target="_blank">RCN YouTube</a></span></div>
   </div>
 
-  <div id="time-note-box" class="info-box" style="margin-top:.75rem">⏰ Todos los horarios en <strong>COT (Hora de Colombia, UTC−5)</strong> = Hora del Este (ET) − 1 hora.</div>
+  <div id="time-note-box" class="info-box" style="margin-top:.75rem">All times on this page are in <strong>COT (Colombia Time, UTC−5)</strong> = Eastern Time − 1 hour.</div>
 </div>
 
-<div class="footer" id="footer-txt">FIFA World Cup 2026 &nbsp;·&nbsp; Times in COT (UTC−5) &nbsp;·&nbsp; <a href="https://www.fifa.com" target="_blank">FIFA.com</a> for live scores</div>
-</div><!-- .page -->
+<div class="footer" id="footer-txt">FIFA World Cup 2026 · Times in COT (UTC−5) · <a href="https://www.fifa.com/" target="_blank">FIFA.com</a></div>
+<!-- .page -->
 
 <script>
 // ─── GROUP STAGE MATCHES ────────────────────────────────────────────────────
@@ -1068,13 +3070,53 @@ function filterSched(f,btn){
 
 function matchCardHTML(m, label, color, isCol) {
   const dayShort = fmtDayShort(m.date);
-  return `<div class="match-card ${isCol?'colombia':''} ${m.mid==='FINAL'?'final-match':''}">
+  const nowMs = Date.now();
+  const status = getMatchStatus(m, nowMs);
+
+  // Look up score
+  const grpResults = m.group && !m.isKO ? (results[m.group] || []) : [];
+  const koRes = m.mid ? koResults[String(m.mid).replace('M','').replace('R16-','').replace('QF','').replace('SF','').replace('3P','').replace('FINAL','')] : null;
+  const res = m.isKO ? koRes : grpResults.find(r => r.home===m.home && r.away===m.away);
+  const hasScore = !!res;
+
+  // Right-side display: live pulse, score, or time
+  let timeBlock = '';
+  if (status === 'live') {
+    const scoreStr = hasScore ? `${res.hg}–${res.ag}` : 'vs';
+    timeBlock = `<div class="m-time">
+      <div style="display:flex;align-items:center;gap:5px;justify-content:flex-end">
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block;animation:pulse 1.2s infinite;flex-shrink:0"></span>
+        <span class="m-cot" style="color:var(--red);font-size:14px">${scoreStr}</span>
+      </div>
+      <div class="m-et" style="color:var(--red)">${lang==='es'?'En vivo':'Live'}</div>
+    </div>`;
+  } else if (hasScore) {
+    // Determine result colour from Colombia's perspective if applicable
+    let scoreColor = 'var(--accent)';
+    if (isCol) {
+      const colIsHome = m.home === 'Colombia';
+      const cg = colIsHome ? res.hg : res.ag;
+      const og = colIsHome ? res.ag : res.hg;
+      scoreColor = cg > og ? 'var(--green)' : cg < og ? 'var(--red)' : 'var(--muted)';
+    }
+    timeBlock = `<div class="m-time">
+      <div class="m-cot" style="color:${scoreColor};font-size:15px">${res.hg} – ${res.ag}</div>
+      <div class="m-et">${lang==='es'?'Final':'FT'}</div>
+    </div>`;
+  } else {
+    timeBlock = `<div class="m-time">
+      <div class="m-cot">${fmtCOT(m.cotH,m.cotM)}</div>
+      <div class="m-et">${m.mid ? dayShort : fmtET(m.etH,m.etM)}</div>
+    </div>`;
+  }
+
+  return `<div class="match-card ${isCol?'colombia':''} ${m.mid==='M104'?'final-match':''} ${status==='live'?'is-live-card':''}">
     <span class="gbadge" style="${color?`background:${color}22;color:${color};`:''}min-width:${m.mid?'44px':'30px'};font-size:${m.mid?'10px':'11px'}">${label}</span>
     <div class="m-teams">
       <div class="m-vs-row">${m.hf||''} ${m.home||'?'} <span class="m-vs">vs</span> ${m.away||'?'} ${m.af||''}${isCol?'<span class="col-pill">🇨🇴</span>':''}</div>
       <div class="m-meta">📍 ${m.venue}</div>
     </div>
-    <div class="m-time"><div class="m-cot">${fmtCOT(m.cotH,m.cotM)}</div><div class="m-et">${m.mid?dayShort:fmtET(m.etH,m.etM)}</div></div>
+    ${timeBlock}
   </div>`;
 }
 
@@ -1830,7 +3872,9 @@ function clearAllData() {
   lsRemove(LS_KO);
   Object.keys(results).forEach(k => delete results[k]);
   Object.keys(koResults).forEach(k => delete koResults[k]);
+  if (fetchInterval) { clearTimeout(fetchInterval); fetchInterval = null; }
   refreshAll();
+  startAutoRefresh();
 }
 
 // ─── REFRESH ALL REACTIVE VIEWS ──────────────────────────────────────────────
@@ -1841,7 +3885,7 @@ function refreshAll() {
   renderColombiaPath();
   renderProgressBar();
   renderTicker();
-  if (schedFilter==='knockout'||schedFilter==='today') renderSchedule();
+  renderSchedule(); // always refresh — scores now show on schedule cards
 }
 
 // ─── LIVE DATA FETCH (openfootball/worldcup.json — open CORS, no token needed) ──
@@ -1924,11 +3968,21 @@ async function fetchLiveData() {
     const lastFetch = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
     const totalScored = apiMatches.filter(m => m.score?.ft).length;
     const koScored = apiMatches.filter(m => m.score?.ft && m.num >= 73).length;
+    // Determine next refresh interval for display
+    const nowMs2 = Date.now();
+    const allM2 = [...matches];
+    const anyLive2 = allM2.some(m => getMatchStatus(m, nowMs2) === 'live');
+    const anySoon2 = allM2.some(m => getMatchStatus(m, nowMs2) === 'soon');
+    const anyJustFinished2 = allM2.some(m => {
+      const s = getMatchUTCMs(m), e = s + 110*60*1000;
+      return nowMs2 > e && (nowMs2 - e) < 30*60*1000;
+    });
+    const nextIn = anyLive2 || anySoon2 ? '60s' : anyJustFinished2 ? '2 min' : '5 min';
     setApiStatus('ok',
-      `✓ Data synced &nbsp;·&nbsp; ${totalScored} result${totalScored!==1?'s':''} in source`
-      + (koScored > 0 ? ` &nbsp;·&nbsp; ${koScored} knockout result${koScored>1?'s':''}` : '')
-      + ` &nbsp;·&nbsp; ${updated} new &nbsp;·&nbsp; Last synced ${lastFetch}`
-      + ` &nbsp;·&nbsp; <span style="color:var(--faint);font-size:11px">Source: openfootball (updated ~daily)</span>`
+      `✓ Synced ${lastFetch}`
+      + (totalScored > 0 ? ` &nbsp;·&nbsp; ${totalScored} result${totalScored!==1?'s':''}` : '')
+      + (koScored > 0 ? ` &nbsp;·&nbsp; ${koScored} KO result${koScored>1?'s':''}` : '')
+      + ` &nbsp;·&nbsp; <span style="color:var(--faint);font-size:11px">next in ${nextIn}</span>`
     );
     if (updated > 0 || koScored > 0) refreshAll();
     else renderStandings();
@@ -1938,9 +3992,46 @@ async function fetchLiveData() {
 }
 
 function startAutoRefresh() {
-  if (fetchInterval) clearInterval(fetchInterval);
-  // Refresh every 5 minutes — openfootball updates ~daily so no need to hammer it
-  fetchInterval = setInterval(fetchLiveData, 5 * 60 * 1000);
+  if (fetchInterval) clearTimeout(fetchInterval);
+
+  function scheduleNext() {
+    const nowMs = Date.now();
+    const allM  = [...matches, ...koMatches.map(m => ({
+      ...m,
+      home: resolveKOSlot(m.homeSlot) || m.homeSlot,
+      away: resolveKOSlot(m.awaySlot) || m.awaySlot,
+    }))];
+
+    // Check if any match is live right now
+    const anyLive = allM.some(m => getMatchStatus(m, nowMs) === 'live');
+
+    // Check if any match starts within the next 30 minutes
+    const anySoon = allM.some(m => getMatchStatus(m, nowMs) === 'soon');
+
+    // Check if any match ended within the last 30 minutes
+    // (score may just have been posted by Gerald)
+    const anyJustFinished = allM.some(m => {
+      const startMs = getMatchUTCMs(m);
+      const endMs   = startMs + 110 * 60 * 1000;
+      return nowMs > endMs && (nowMs - endMs) < 30 * 60 * 1000;
+    });
+
+    let intervalMs;
+    if (anyLive || anySoon) {
+      intervalMs = 60 * 1000;        // 60s — match is happening right now
+    } else if (anyJustFinished) {
+      intervalMs = 2 * 60 * 1000;   // 2 min — match just ended, score likely incoming
+    } else {
+      intervalMs = 5 * 60 * 1000;   // 5 min — nothing active
+    }
+
+    fetchInterval = setTimeout(async () => {
+      await fetchLiveData();
+      scheduleNext(); // reschedule after each fetch based on new state
+    }, intervalMs);
+  }
+
+  scheduleNext();
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
@@ -1972,5 +4063,6 @@ applyLang();
 fetchLiveData();
 startAutoRefresh();
 </script>
-</body>
-</html>
+
+
+</body></html>
